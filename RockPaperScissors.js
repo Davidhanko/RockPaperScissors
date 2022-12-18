@@ -8,7 +8,7 @@ let playScore = 0;
 let playerSelection;
 
 const BTN = document.querySelectorAll(".buts");
-const reset = document.querySelector(".reset")
+const reset = document.querySelector(".reset");
 const answerDiv = document.querySelector(`.answer`)
 const roundWinner = document.createElement("div")
 roundWinner.setAttribute("class", "winner")
