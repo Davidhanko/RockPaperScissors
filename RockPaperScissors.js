@@ -7,14 +7,15 @@ let compScore = 0;
 let playScore = 0;
 let playerSelection;
 
-const BTN = document.querySelectorAll("button");
+const BTN = document.querySelectorAll(".buts");
+const reset = document.querySelector(".reset")
 const answerDiv = document.querySelector(`.answer`)
 const roundWinner = document.createElement("div")
 roundWinner.setAttribute("class", "winner")
 const score = document.createElement("div")
 score.setAttribute("class", "score")
 const gameWinner = document.createElement("div")
-gameWinner.setAttribute("class", "Gwin")
+gameWinner.setAttribute("class", "gwin")
 answerDiv.appendChild(roundWinner)
 answerDiv.appendChild(score)
 answerDiv.appendChild(gameWinner)
@@ -77,12 +78,12 @@ if (playerChoice == paper)
     }
 score.textContent=compScore + ":" + playScore
 if (compScore == 5) {
-    gameWinner.textContent="COMPUTER WON"
+    gameWinner.innerHTML=`PLAYER WON<br>To continue, press RESET`
     BTN.forEach(button => {
         button.disabled = true});
 }
     else if (playScore == 5) {
-        gameWinner.textContent="PLAYER WON"
+        gameWinner.innerHTML=`PLAYER WON<br>To continue, press RESET`
     BTN.forEach(button => {
         button.disabled = true
     });
@@ -103,6 +104,7 @@ BTN.forEach(button => {
     button.addEventListener("click", ()=>{game(button.className)})
 });
 
+reset.addEventListener("click", ()=> location. reload())
 
 
 
