@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a30d31b-11cd-42f1-856a-595dab2f5a07" name="Changes" comment="Made some QoL changes in JS" />
+    <list default="true" id="9a30d31b-11cd-42f1-856a-595dab2f5a07" name="Changes" comment="Made some QoL changes in JS">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RockPaperScissors.js" beforeDir="false" afterPath="$PROJECT_DIR$/RockPaperScissors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +53,9 @@
       <workItem from="1671352508183" duration="5000" />
       <workItem from="1671354405502" duration="1110000" />
       <workItem from="1671355639746" duration="737000" />
+      <workItem from="1673989265122" duration="84000" />
+      <workItem from="1674055410737" duration="24000" />
+      <workItem from="1674056175529" duration="1394000" />
     </task>
     <task id="LOCAL-00001" summary="Made some QoL changes">
       <created>1671355510386</created>

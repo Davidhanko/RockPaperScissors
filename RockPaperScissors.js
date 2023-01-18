@@ -1,110 +1,70 @@
-let rock = "rock";
-let scissors = "scissors";
-let paper = "paper";
-let ComputerRandom = 0;
-let Player;
+const options = ['rock', 'paper', 'scissors'];
+
 let compScore = 0;
 let playScore = 0;
-let playerSelection;
+
+let roundsAmount = 5
+let roundsPlayed = 0;
 
 const BTN = document.querySelectorAll(".buts");
 const reset = document.querySelector(".reset");
-const answerDiv = document.querySelector(`.answer`)
-const roundWinner = document.createElement("div")
-roundWinner.setAttribute("class", "winner")
-const score = document.createElement("div")
-score.setAttribute("class", "score")
-const gameWinner = document.createElement("div")
-gameWinner.setAttribute("class", "gwin")
-answerDiv.appendChild(roundWinner)
-answerDiv.appendChild(score)
-answerDiv.appendChild(gameWinner)
+const roundWinner = document.querySelector(`.winner`)
+const score = document.querySelector(`.score`)
+const gameWinner = document.querySelector(`.gwin`)
 
-function getComputerChoice(){
-    ComputerRandom = Math.floor(Math.random() * (4 - 1) + 1);
-    if (ComputerRandom == 1){
-        return rock;
-    }
-    else if (ComputerRandom == 2){
-        return scissors;
-    }
-    else if (ComputerRandom == 3) return paper;
+function getRandomChoice(){
+    return options[Math.floor(Math.random() * options.length)];
 }
-
 
 function playGame(playerChoice, ComputerChoice){
-if (playerChoice == rock)
-{
-    if (ComputerChoice == rock){
-        roundWinner.textContent=("rock vs rock, draw")
+    if (CalculateRounds() >= roundsAmount){
+        return
     }
-    else if (ComputerChoice == paper){
-        compScore++;
-        roundWinner.textContent=("rock vs paper, computer wins")
-    }
-    else if (ComputerChoice == scissors){
+
+    if(playerChoice === ComputerChoice){
+        roundWinner.textContent = "Tie!"
+    }else if(playerChoice === "rock" && ComputerChoice === "scissors"){
+        roundWinner.textContent = "You Win!"
         playScore++;
-        roundWinner.textContent=("rock vs scissors, player wins")
-    }
-}
-if (playerChoice == scissors)
-{
-    if (ComputerChoice == rock){
-        compScore++;
-        roundWinner.textContent=("scissors vs rock, computer wins")
-    }
-    else if (ComputerChoice == paper){
+    }else if(playerChoice === "paper" && ComputerChoice === "rock"){
+        roundWinner.textContent = "You Win!"
         playScore++;
-        roundWinner.textContent=("scissors vs paper, player wins")
-    }
-    else if (ComputerChoice == scissors){
+    }else if(playerChoice === "scissors" && ComputerChoice === "paper"){
+        roundWinner.textContent = "You Win!"
         playScore++;
-        roundWinner.textContent="scissors vs scissors, draw"
+    }else{
+        roundWinner.textContent = "You Lose!"
+        compScore++
     }
-}
-if (playerChoice == paper)
-{
-    if (ComputerChoice == rock){
-        playScore++;
-        roundWinner.textContent="paper vs rock, player wins"
+    score.textContent = `Your Score: ${playScore} Computer Score: ${compScore}`
+
+    roundsPlayed++;
+
+    if(CalculateRounds() >= roundsAmount){
+        if(playScore > compScore){
+            gameWinner.textContent = "You Win!"
+        }else if(playScore < compScore){
+            gameWinner.textContent = "You Lose!"
+        }else{
+            gameWinner.textContent = "Tie!"
+        }
     }
-    else if (ComputerChoice == paper){
-        roundWinner.textContent="paper vs paper, draw"
-    }
-    else if (ComputerChoice == scissors){
-        compScore++;
-        roundWinner.textContent="paper vs scissors, computer wins"
-    }
-    }
-score.textContent=compScore + ":" + playScore
-if (compScore == 5) {
-    gameWinner.innerHTML=`PLAYER WON<br>To continue, press RESET`
-    BTN.forEach(button => {
-        button.disabled = true});
-}
-    else if (playScore == 5) {
-        gameWinner.innerHTML=`PLAYER WON<br>To continue, press RESET`
-    BTN.forEach(button => {
-        button.disabled = true
-    });
-}
 }
 
-function game(playerS){
-    let ComputerChoice = getComputerChoice();
-    console.log(ComputerChoice)
-    console.log(playerS)
-    playerSelection = playerS.substring(5)
-    playGame(playerSelection, ComputerChoice);
+function handleInput(playerChoice){
+    playGame(playerChoice, getRandomChoice());
 }
 
+function CalculateRounds(){
+    return roundsPlayed;
+}
 
 // Attach a click event listener to each button
 BTN.forEach(button => {
-    button.addEventListener("click", ()=>{game(button.className)})
+    button.addEventListener("click", ()=>{handleInput(button.id)})
 });
 
-reset.addEventListener("click", ()=> location. reload())
+reset.addEventListener("click", ()=> location.reload())
 
 
 
